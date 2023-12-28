@@ -2,4 +2,5 @@
 import maya.cmds as cmds
 
 if not cmds.about(batch=True):
-    cmds.evalDeferred('import MasterData')
+    cmds.evalDeferred('import MayaData')
+    # cmds.evalDeferred('import FbxData')

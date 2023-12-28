@@ -1,5 +1,5 @@
-from MasterData.data.base import BaseData
-from MasterData.lib import decorator, pivot, unplug_attr
+from MayaData.data.base import BaseData
+from MayaData.lib import decorator, pivot, unplug_attr
 
 from maya.api import OpenMaya
 from maya import cmds

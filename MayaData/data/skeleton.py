@@ -1,6 +1,6 @@
-from MasterData.data.base import BaseData
-from MasterData.data.tree import Tree
-from MasterData.lib import hash, decorator
+from MayaData.data.base import BaseData
+from MayaData.data.tree import Tree
+from MayaData.lib import hash, decorator
 
 from maya.api import OpenMaya
 

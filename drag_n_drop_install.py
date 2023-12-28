@@ -24,10 +24,10 @@ def _dropped_install():
     local_path = Path(__file__).parent.absolute()
 
     maya_mod_path = Path(os.path.join(os.environ['MAYA_APP_DIR'], 'modules'))
-    maya_mod_path = maya_mod_path / 'MasterData.mod'
+    maya_mod_path = maya_mod_path / 'MayaData.mod'
 
     mod_file = open(str(maya_mod_path), 'w')
-    mod_file.write('+ MasterData 1.0 {}\n'.format(PurePath(local_path).as_posix()))
+    mod_file.write('+ MayaData 1.0 {}\n'.format(PurePath(local_path).as_posix()))
     mod_file.write('scripts: {}'.format(PurePath(local_path).as_posix()))
     mod_file.close()
 

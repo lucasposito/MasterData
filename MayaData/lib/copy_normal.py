@@ -12,7 +12,7 @@ def _get_selected_vtx_data():
         vertices[tuple(vertex_iter.position(OpenMaya.MSpace.kWorld))] = {'vertex_id': vertex_iter.index(),
                                                                          'normals': vertex_iter.getNormals(
                                                                              OpenMaya.MSpace.kWorld),
-                                                                         'faces': vertex_iter.getConnectedFaces()}
+                                                                         'masks': vertex_iter.getConnectedFaces()}
         vertex_iter.next()
     return vertices
 
@@ -25,7 +25,7 @@ def _get_border_vtx_data(mesh_name):
     while not vertex_iter.isDone():
         if vertex_iter.onBoundary():
             border[tuple(vertex_iter.getUV())] = {'vertex_id': vertex_iter.index(), 'normals': vertex_iter.getNormals(),
-                                                  'faces': vertex_iter.getConnectedFaces()}
+                                                  'masks': vertex_iter.getConnectedFaces()}
         vertex_iter.next()
     return border
 
@@ -49,7 +49,7 @@ class CopyNormals(object):
             distance = numpy.linalg.norm(source_pos - np_pos, axis=1)
             closest_pos = numpy.argmin(distance)
             pos_key = tuple(source_pos[closest_pos])
-            for normal, face_id in zip(self._source[pos_key]['normals'], value['faces']):
+            for normal, face_id in zip(self._source[pos_key]['normals'], value['masks']):
                 mesh_mfn.setFaceVertexNormal(normal, face_id, value['vertex_id'], OpenMaya.MSpace.kWorld)
 
     def from_uv_border(self, mesh_a, mesh_b):
@@ -67,5 +67,5 @@ class CopyNormals(object):
             closest_uv = numpy.argmin(distance)
             uv_key = tuple(mesh_a_uvs[closest_uv])
 
-            for normal, face_id in zip(self._source[uv_key]['normals'], value['faces']):
+            for normal, face_id in zip(self._source[uv_key]['normals'], value['masks']):
                 mesh_b_mfn.setFaceVertexNormal(normal, face_id, value['vertex_id'])

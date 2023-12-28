@@ -1,5 +1,5 @@
-from MasterData.data.base import BaseData
-from MasterData.lib import decorator
+from MayaData.data.base import BaseData
+from MayaData.lib import decorator
 from maya.api import OpenMaya
 
 

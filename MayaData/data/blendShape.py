@@ -1,6 +1,6 @@
-from MasterData.lib import get_node, pivot, decorator
-from MasterData.data import geometry, uv
-from MasterData.data.base import BaseData
+from MayaData.lib import get_node, pivot, decorator
+from MayaData.data import geometry, uv
+from MayaData.data.base import BaseData
 
 from maya.api import OpenMaya
 from maya import cmds

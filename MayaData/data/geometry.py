@@ -1,5 +1,5 @@
-from MasterData.data.base import BaseData
-from MasterData.lib import decorator
+from MayaData.data.base import BaseData
+from MayaData.lib import decorator
 
 from maya.api import OpenMaya
 
@@ -27,7 +27,7 @@ def get(name):
 
     data['vertices'] = vertex_data
     data['indices'] = face_vertex_indices
-    data['faces'] = face_counts
+    data['masks'] = face_counts
     return data
 
 
@@ -38,7 +38,7 @@ def load(data=None):
         data.load()
     face_points = [OpenMaya.MPoint(vertex) for vertex in data['vertices']]
     mfn_mesh = OpenMaya.MFnMesh()
-    mfn_mesh.create(face_points, data['faces'], data['indices'])
+    mfn_mesh.create(face_points, data['masks'], data['indices'])
 
     matrix = OpenMaya.MMatrix(data['matrix'])
     matrix = OpenMaya.MTransformationMatrix(matrix)
@@ -56,5 +56,5 @@ class GeometryData(BaseData):
         self['name'] = str()
         self['vertices'] = list()
         self['indices'] = list()
-        self['faces'] = list()
+        self['masks'] = list()
         self['matrix'] = list()
